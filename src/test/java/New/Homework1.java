@@ -3,12 +3,21 @@ package New;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.seleniumhq.jetty9.server.handler.ContextHandler;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import sun.plugin.dom.core.Element;
 
+import javax.script.ScriptContext;
+import javax.swing.text.html.CSS;
+import java.text.AttributedCharacterIterator;
 import java.util.concurrent.TimeUnit;
 
 public class Homework1 {
+
+
+    //private CSS checkBox;
+
     @Test
     public void test1() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "Drivers\\chromedriver.exe");
@@ -37,7 +46,6 @@ public class Homework1 {
         driver.findElement(By.cssSelector("#gettotal > button")).click();
         String total = driver.findElement(By.id("displayvalue")).getText();
         Assert.assertEquals("10", total);
-        //driver.findElement (By.id("displayvalue")).isDisplayed();
         driver.findElement (By.cssSelector("#treemenu > li > ul > li:nth-child(1) > a")).click();
         driver.findElement (By.cssSelector("#treemenu > li > ul > li:nth-child(1) > ul > li:nth-child(2) > a")).click();
         driver.findElement (By.cssSelector("#isAgeSelected")).click();
@@ -46,7 +54,33 @@ public class Homework1 {
         Thread.sleep(2000);
         driver.findElement (By.cssSelector("#check1")).click();
         Thread.sleep(2000);
+        //WebElement checkedBox = findElementByClass("//li[@id='privileges:1']/div/span/div/div/span[@class='ui-tree-checkbox-icon.ui-icon.ui-icon-check']");
+        //assertTrue(checkedBox.isEnabled());
+        //div class= "checkbox";
+        //assertTrue(checkedBox.isEnabled());
         driver.findElement (By.xpath("//*[@id=\"check1\"]")).click();
+        Thread.sleep(2000);
+        driver.findElement (By.cssSelector("#treemenu > li > ul > li:nth-child(1) > a")).click();
+        driver.findElement (By.cssSelector("#treemenu > li > ul > li:nth-child(1) > ul > li:nth-child(3) > a")).click();
+        Thread.sleep(2000);
+        driver.findElement (By.cssSelector("#buttoncheck")).click();
+        text = driver.findElement(By.xpath("//*[@id=\"easycont\"]/div/div[2]/div[1]/div[2]/p[3]")).getText();
+        Assert.assertEquals("Radio button is Not checked", text);
+        Thread.sleep(2000);
+        driver.findElement (By.cssSelector("#easycont > div > div.col-md-6.text-left > div:nth-child(4) > div.panel-body > label:nth-child(2) > input[type=\"radio\"]")).click();
+        driver.findElement (By.cssSelector("#buttoncheck")).click();
+        Thread.sleep(2000);
+        text = driver.findElement(By.xpath("//*[@id=\"easycont\"]/div/div[2]/div[1]/div[2]/p[3]")).getText();
+        Assert.assertEquals("Radio button 'Male' is checked", text);
+        driver.findElement (By.cssSelector("#easycont > div > div.col-md-6.text-left > div:nth-child(5) > div.panel-body > button")).click();
+        text = driver.findElement(By.xpath("//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/p[2]")).getText();
+        Assert.assertEquals("Sex :\n" +
+                "Age group:", text);
+        Thread.sleep(2000);
+        driver.findElement (By.cssSelector("#treemenu > li > ul > li:nth-child(1) > a")).click();
+        driver.findElement (By.cssSelector("#treemenu > li > ul > li:nth-child(1) > ul > li:nth-child(4) > a")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[@id=\"select-demo\"]")).click();
         Thread.sleep(2000);
         driver.close();
 

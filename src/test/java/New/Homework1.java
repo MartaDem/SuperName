@@ -1,8 +1,10 @@
 package New;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.seleniumhq.jetty9.server.handler.ContextHandler;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -76,13 +78,56 @@ public class Homework1 {
         text = driver.findElement(By.xpath("//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/p[2]")).getText();
         Assert.assertEquals("Sex :\n" +
                 "Age group:", text);
+        driver.findElement (By.xpath("//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/div[1]/label[2]/input")).click();
+        driver.findElement (By.xpath("//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/div[2]/label[3]/input")).click();
+        driver.findElement (By.xpath("//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/button")).click();
+        text = driver.findElement(By.xpath("//*[@id=\"easycont\"]/div/div[2]/div[2]/div[2]/p[2]")).getText();
+        Assert.assertEquals("Sex : Female\n" +
+                "Age group: 15 - 50", text);
         Thread.sleep(2000);
         driver.findElement (By.cssSelector("#treemenu > li > ul > li:nth-child(1) > a")).click();
         driver.findElement (By.cssSelector("#treemenu > li > ul > li:nth-child(1) > ul > li:nth-child(4) > a")).click();
         Thread.sleep(2000);
         driver.findElement(By.xpath("//*[@id=\"select-demo\"]")).click();
         Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[@id=\"select-demo\"]/option[3]")).click();
+        //Select dropdown = new Select(driver.findElement(By.xpath("//*[@id=\"select-demo\"]/option[3]")));
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[@id=\"printMe\"]")).click();
+        Thread.sleep(2000);
+        driver.findElement (By.cssSelector("#treemenu > li > ul > li:nth-child(1) > a")).click();
+        driver.findElement (By.cssSelector("#treemenu > li > ul > li:nth-child(1) > ul > li:nth-child(5) > a")).click();
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[1]/div/div/input")).clear();
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[1]/div/div/input")).sendKeys("Marta");
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[2]/div/div/input")).clear();
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[2]/div/div/input")).sendKeys("Monday");
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[3]/div/div/input")).clear();
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[3]/div/div/input")).sendKeys("mmonday@gmail.com");
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[4]/div/div/input")).clear();
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[4]/div/div/input")).sendKeys("555-45-098");
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[5]/div/div/input")).clear();
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[5]/div/div/input")).sendKeys("Baker Street");
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[6]/div/div/input")).clear();
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[6]/div/div/input")).sendKeys("Bedford");
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[7]/div/div/select")).click();
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[7]/div/div/select/option[17]")).click();
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[8]/div/div/input")).sendKeys("78987");
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[10]/div/div[2]/label/input")).click();
+        driver.findElement(By.xpath("//*[@id=\"contact_form\"]/fieldset/div[13]/div/button")).click();
+        Thread.sleep(3000);
+        driver.findElement (By.cssSelector("#treemenu > li > ul > li:nth-child(1) > a")).click();
+        driver.findElement (By.cssSelector("#treemenu > li > ul > li:nth-child(1) > ul > li:nth-child(6) > a")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[@id=\"title\"]")).clear();
+        driver.findElement(By.xpath("//*[@id=\"title\"]")).sendKeys("Marta");
+        driver.findElement(By.xpath("//*[@id=\"description\"]")).clear();
+        driver.findElement(By.xpath("//*[@id=\"description\"]")).sendKeys("Monday is the first working day of the week :(");
+        driver.findElement (By.xpath("//*[@id=\"btn-submit\"]")).click();
+        Thread.sleep(3000);
+        text = driver.findElement(By.xpath("//*[@id=\"submit-control\"]")).getText();
+        Assert.assertEquals("Form submited Successfully!", text);
         driver.close();
+
 
     }
 
